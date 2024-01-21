@@ -21,7 +21,7 @@ describe( "submitData()", () => {
   it( "makes a POST request to /users with a name and email", async () => {
     let reqBody
     let headers
-    nock( 'http://localhost:3000' )
+    nock( 'http://localhost:3000/users' )
       .post( '/users' )
       .reply( 201, function ( uri, requestBody ) {
         reqBody = requestBody
@@ -53,7 +53,7 @@ describe( "submitData()", () => {
   } )
 
   it( "handles the POST request response, retrieves the new id value and appends it to the DOM", async function () {
-    nock( 'http://localhost:3000' )
+    nock( 'http://localhost:3000/users' )
       .post( '/users' )
       .reply( 201, function ( uri, requestBody ) {
         return {
@@ -73,7 +73,7 @@ describe( "submitData()", () => {
 
   it( "handles a failed POST request using catch, appends the error message to the DOM", async function () {
     let message = 'Unauthorized Access'
-    nock( 'http://localhost:3000' )
+    nock( 'http://localhost:3000/users' )
       .post( '/users' )
       .replyWithError( {
         message: message,
